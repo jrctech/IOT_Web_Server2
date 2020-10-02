@@ -1,0 +1,17 @@
+<?php 
+    $event = $_POST['event'];
+    $value = $_POST['value'];
+    $description = $_POST['description'];
+    //echo "Trying to insert... <br>";
+    require_once('conectar.php');
+    $conexion=conectar();
+    mysqli_query($conexion, "INSERT INTO `event_log`(`id`, `date_time`, `event`, `description`, `value`) VALUES (NULL,NULL,1,"description",0)");
+    echo "event= $event description= $description value=$value done!";
+
+    $cuenta=mysqli_query($conexion,"SELECT COUNT(*) FROM `event_log` WHERE 1");
+    $cuenta=mysqli_fetch_array($cuenta);
+    if ($cuenta[0] >= 11){
+	    mysqli_query($conexion, "DELETE FROM event_log ORDER BY id LIMIT 1;");
+}
+
+?> 
